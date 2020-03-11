@@ -36,9 +36,8 @@ room["narrow"].w = room["foyer"]
 room["narrow"].n = room["treasure"]
 room["treasure"].s = room["narrow"]
 
-global info, action
-info = "-"
-action = "*"
+global info
+info = None
 
 def pause(x):
 	time.sleep(x)
@@ -46,6 +45,9 @@ def pause(x):
 def cli(player):
 	global info
 	cmd = input("\n> ").lower()
+
+	if cmd == "":
+		pass
 
 	if cmd == "n" or "e" or "w" or "s":
 		go(cmd, player)
@@ -57,37 +59,43 @@ def cli(player):
 		print("\nPeace.\n")
 		exit()
 
+
+
+
 def where(player):
 	print (f"You are in the {player.location.name}\n{player.location.desc}") 
 
 def go(dir, player):
-	global action
+	global info
 	
-	def check(x):
-		if (isinstance(x, Room)):
-			return True
-		else:
-			return False
+	if dir == "n":
+		try:
+			info = f"\nYou came from the {player.location.name} to the south."
+			player.location = player.location.n
+		except: 
+			info = "\nCan't go North from here."
 
-	cango = {
-		"n": check(player.location.n),
-		"e": check(player.location.e),
-		"w": check(player.location.w),
-		"s": check(player.location.s)
-	}
-	print(cango.n, cango.e, cango.w, cango.s)
-	pause(6)
+	elif dir == "e":
+		try:
+			info = f"\nYou came from the {player.location.name} to the west."
+			player.location = player.location.e
+		except: 
+			info = "\nCan't go East from here."
 
-	if dir == "n" and isinstance(player.location.n, Room):
-		player.location = player.location.n
-	elif dir == "e" and isinstance(player.location.e, Room):
-		player.location = player.location.n
-	elif dir == "w" and isinstance(player.location.w, Room):
-		player.location = player.location.n
-	elif dir == "s" and isinstance(player.location.s, Room):
-		player.location = player.location.n
+	elif dir == "w":
+		try:
+			info = f"\nYou came from the {player.location.name} to the east."
+			player.location = player.location.w
+		except: 
+			info = "\nCan't go West from here."
 
-	action = f"You went {dir.upper()}\n"
+	elif dir == "s":
+		try:
+			info = f"\nYou came from the {player.location.name} to the north."
+			player.location = player.location.s
+		except: 
+			info = "\nCan't go South from here."
+	
 
 
 count = 0
@@ -107,21 +115,17 @@ while isPlaying:
 	# * Prints the current room name
 	# * Prints the current description (the textwrap module might be useful here).
 
-	if action != "*":
-		print(action)
-		action = "*"
-
 	where(player)
 
-	if info != "-":
+	if info != None:
 		print(info)
-		info = "-"
+		info = None
 
 	# * Waits for user input and decides what to do.
 	cli(player)
 
 	count += 1
-	if count > 4:
+	if count > 14:
 		break
 
 #
