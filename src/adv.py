@@ -38,6 +38,9 @@ room["treasure"].s = room["narrow"]
 
 global info
 info = None
+global isPlaying
+isPlaying = True 
+count = 0
 
 def pause(x):
 	time.sleep(x)
@@ -47,6 +50,7 @@ def where(player):
 
 def cli(player):
 	global info
+	global isPlaying
 	cmd = input("\n> ").lower()
 
 	if cmd in ("n", "e", "w", "s"):
@@ -93,11 +97,6 @@ def go(dir, player):
 			player.location = player.location.s
 		except: 
 			info = "\nCan't go South from here."
-	
-
-
-count = 0
-isPlaying = True 
 
 #
 # Main
