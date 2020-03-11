@@ -1,6 +1,7 @@
 from room import Room
 from player import Human
 import os
+import time
 
 # Declare all the rooms
 
@@ -39,6 +40,9 @@ global info, action
 info = "-"
 action = "*"
 
+def pause(x):
+	time.sleep(x)
+
 def cli(player):
 	global info
 	cmd = input("\n> ").lower()
@@ -58,12 +62,31 @@ def where(player):
 
 def go(dir, player):
 	global action
-	currentloc = player.location
+	
+	def check(x):
+		if (isinstance(x, Room)):
+			return True
+		else:
+			return False
 
-	if dir == "n" and isinstance(currentloc.n, Room):
-		player.location = currentloc.n
+	cango = {
+		"n": check(player.location.n),
+		"e": check(player.location.e),
+		"w": check(player.location.w),
+		"s": check(player.location.s)
+	}
+	print(cango.n, cango.e, cango.w, cango.s)
+	pause(6)
 
-	# action = (player.location.n)
+	if dir == "n" and isinstance(player.location.n, Room):
+		player.location = player.location.n
+	elif dir == "e" and isinstance(player.location.e, Room):
+		player.location = player.location.n
+	elif dir == "w" and isinstance(player.location.w, Room):
+		player.location = player.location.n
+	elif dir == "s" and isinstance(player.location.s, Room):
+		player.location = player.location.n
+
 	action = f"You went {dir.upper()}\n"
 
 
