@@ -1,18 +1,18 @@
 from room import Room
-from player import Player
+from player import Human
 import os
 
 # Declare all the rooms
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "outside": Room("Outside Cave Entrance", "North of player, the cave mount beckons"),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty passages run north and east.""",
     ),
     "overlook": Room(
         "Grand Overlook",
-        """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+        """A steep cliff appears before player, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
     ),
     "narrow": Room(
         "Narrow Passage",
@@ -20,47 +20,62 @@ room = {
     ),
     "treasure": Room(
         "Treasure Chamber",
-        """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
+        """player've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
     ),
 }
 
 # Link rooms together
 
-room["outside"].nto = room["foyer"]
-room["foyer"].sto = room["outside"]
-room["foyer"].nto = room["overlook"]
-room["foyer"].eto = room["narrow"]
-room["overlook"].sto = room["foyer"]
-room["narrow"].wto = room["foyer"]
-room["narrow"].nto = room["treasure"]
-room["treasure"].sto = room["narrow"]
+room["outside"].n = room["foyer"]
+room["foyer"].s = room["outside"]
+room["foyer"].n = room["overlook"]
+room["foyer"].e = room["narrow"]
+room["overlook"].s = room["foyer"]
+room["narrow"].w = room["foyer"]
+room["narrow"].n = room["treasure"]
+room["treasure"].s = room["narrow"]
 
-def cli():
-	cmd = input("\n> ")
+global info, action
+info = "-"
+action = "*"
 
-	if cmd == "n":
-		# move rooms
-		# move("n")
-		pass
-	elif cmd == "q":
+def cli(player):
+	global info
+	cmd = input("\n> ").lower()
+
+	if cmd == "n" or "e" or "w" or "s":
+		go(cmd, player)
+
+	elif cmd == "h" or "help":
+		info = "\nCommands: [n]orth, [e]ast, [w]est, [s]outh, [h]elp, [q]uit."
+
+	elif cmd == "q" or "quit":
 		print("\nPeace.\n")
 		exit()
 
 def where(player):
 	print (f"You are in the {player.location.name}\n{player.location.desc}") 
 
-def go(dir):
-	print (dir)
+def go(dir, player):
+	global action
+	currentloc = player.location
+
+	if dir == "n" and isinstance(currentloc.n, Room):
+		player.location = currentloc.n
+
+	# action = (player.location.n)
+	action = f"You went {dir.upper()}\n"
+
 
 count = 0
-isPlaying = True
+isPlaying = True 
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-you = Player("The Player", room["outside"], "player", "nothing")
+player = Human("The Player", room["outside"], "player", "nothing")
 
 
 # Write a loop that: 
@@ -68,10 +83,19 @@ while isPlaying:
 	os.system("cls")
 	# * Prints the current room name
 	# * Prints the current description (the textwrap module might be useful here).
-	where(you)
+
+	if action != "*":
+		print(action)
+		action = "*"
+
+	where(player)
+
+	if info != "-":
+		print(info)
+		info = "-"
 
 	# * Waits for user input and decides what to do.
-	cli()
+	cli(player)
 
 	count += 1
 	if count > 4:

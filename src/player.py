@@ -8,7 +8,7 @@ class Mob:
 	def kill():
 		return (f"{kind} is dead.")
 
-class Player(Mob):
+class Human(Mob):
 	def __init__(self, name, location, kind, inv):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
