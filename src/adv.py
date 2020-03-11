@@ -42,28 +42,26 @@ info = None
 def pause(x):
 	time.sleep(x)
 
+def where(player):
+	print (f"You are in the {player.location.name}\n{player.location.desc}") 
+
 def cli(player):
 	global info
 	cmd = input("\n> ").lower()
 
-	if cmd == "":
-		pass
-
-	if cmd == "n" or "e" or "w" or "s":
+	if cmd in ("n", "e", "w", "s"):
 		go(cmd, player)
 
-	elif cmd == "h" or "help":
+	elif cmd in ("h", "help"):
 		info = "\nCommands: [n]orth, [e]ast, [w]est, [s]outh, [h]elp, [q]uit."
 
-	elif cmd == "q" or "quit":
+	elif cmd in ("q", "quit"):
 		print("\nPeace.\n")
 		exit()
 
+	else:
+		info = "\nSorry. Can't help you."
 
-
-
-def where(player):
-	print (f"You are in the {player.location.name}\n{player.location.desc}") 
 
 def go(dir, player):
 	global info
