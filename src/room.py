@@ -6,6 +6,7 @@ class Room:
 		# self.nto, self.eto, self.wto, self.sto, = nto, eto, wto, sto
 		self.name = name
 		self.desc = desc
-	def where():
-		print(self.name)
-		print(self.desc)
+# nto
+# sto
+# nto
+# eto

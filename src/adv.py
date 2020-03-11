@@ -34,16 +34,28 @@ room["narrow"].wto = room["foyer"]
 room["narrow"].nto = room["treasure"]
 room["treasure"].sto = room["narrow"]
 
+
+def where(player):
+	print (f"{player.location.name}\n{player.location.desc}") 
+
+def go(dir):
+	print (dir)
+
+isPlaying = False
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
 you = Player("The Player", room["outside"], "player", "nothing")
-print (Room.where())
- 
-# Write a loop that:
+
+
+# Write a loop that: 
+while isPlaying:
+	where(you)
+
+
 #
 # * Prints the current room name
 

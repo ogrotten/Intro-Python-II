@@ -3,7 +3,7 @@
 
 class Mob:
 	def __init__(self, kind, location):
-		self.kind, self.location = kind, location
+		(self.kind, self.location) = (kind, location)
 
 	def kill():
 		return (f"{kind} is dead.")
@@ -12,7 +12,8 @@ class Player(Mob):
 	def __init__(self, name, location, kind, inv):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
-	def where():
+	def where(self, room):
+		# print (self.location.desc)
 		return
 	# def move(dir):
 		# get direction
