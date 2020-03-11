@@ -12,8 +12,8 @@ class Player(Mob):
 	def __init__(self, name, location, kind, inv):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
+	def where():
+		return
 	# def move(dir):
 		# get direction
 		# move only if that direction is available.
-	def where():
-		return
