@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import os
 
 # Declare all the rooms
 
@@ -34,14 +35,25 @@ room["narrow"].wto = room["foyer"]
 room["narrow"].nto = room["treasure"]
 room["treasure"].sto = room["narrow"]
 
+def cli():
+	cmd = input("\n> ")
+
+	if cmd == "n":
+		# move rooms
+		# move("n")
+		pass
+	elif cmd == "q":
+		print("\nPeace.\n")
+		exit()
 
 def where(player):
-	print (f"{player.location.name}\n{player.location.desc}") 
+	print (f"You are in the {player.location.name}\n{player.location.desc}") 
 
 def go(dir):
 	print (dir)
 
-isPlaying = False
+count = 0
+isPlaying = True
 
 #
 # Main
@@ -53,15 +65,18 @@ you = Player("The Player", room["outside"], "player", "nothing")
 
 # Write a loop that: 
 while isPlaying:
+	os.system("cls")
+	# * Prints the current room name
+	# * Prints the current description (the textwrap module might be useful here).
 	where(you)
 
+	# * Waits for user input and decides what to do.
+	cli()
 
-#
-# * Prints the current room name
+	count += 1
+	if count > 4:
+		break
 
-
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
