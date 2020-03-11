@@ -25,14 +25,14 @@ room = {
 
 # Link rooms together
 
-room["outside"].n_to = room["foyer"]
-room["foyer"].s_to = room["outside"]
-room["foyer"].n_to = room["overlook"]
-room["foyer"].e_to = room["narrow"]
-room["overlook"].s_to = room["foyer"]
-room["narrow"].w_to = room["foyer"]
-room["narrow"].n_to = room["treasure"]
-room["treasure"].s_to = room["narrow"]
+room["outside"].nto = room["foyer"]
+room["foyer"].sto = room["outside"]
+room["foyer"].nto = room["overlook"]
+room["foyer"].eto = room["narrow"]
+room["overlook"].sto = room["foyer"]
+room["narrow"].wto = room["foyer"]
+room["narrow"].nto = room["treasure"]
+room["treasure"].sto = room["narrow"]
 
 #
 # Main
@@ -40,9 +40,13 @@ room["treasure"].s_to = room["narrow"]
 
 # Make a new player object that is currently in the 'outside' room.
 
+you = player.Player("The Player", room["outside"], "player", "nothing")
+ 
 # Write a loop that:
 #
 # * Prints the current room name
+
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
