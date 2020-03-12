@@ -31,7 +31,7 @@ player = Human("The Player", rooms["outside"], "player", "nothing")
 while isPlaying:
 	os.system("cls")
 
-	where(player)
+	player.where(rooms)
 
 	if info != None:
 		print(info)

@@ -13,8 +13,19 @@ class Human(Mob):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
 
-	def where(self, room):
-		# print (self.location.desc)
+	def where(self, rooms):
+		print (f"You are in the {self.location.name}\n{self.location.desc}")
+
+		stuff = (", ".join(self.location.items))
+		
+		print(self.location.items)
+			# # stuff.join(x)
+
+		if len(stuff) > 0:
+			print (f"\nHere you see {stuff}")
+		# if len(room[self.location.items]) > 0
+		# 	print (f"You are in the {self.location.name}\n{self.location.desc}")
+		
 		return
 
 	def action(self, cmd, player, rooms):
@@ -39,8 +50,9 @@ class Human(Mob):
 			player.location = newloc
 
 		elif verb in ("g", "get"):
-			
-			info = f"\nYou said '{verb} {noun}'. Ok"
+			if noun in currentloc.items:
+				info = currentloc.items
+			info += (f"\nYou said '{verb} {noun}'. You have it.")
 			
 
 		elif verb in ("h", "help"):
