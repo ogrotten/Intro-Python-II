@@ -11,7 +11,7 @@ things = {
 	),
 	"drain": Thing(
 		"hole",
-		"hole in the floor",
+		"a hole in the floor",
 		"There's a hole in the floor. Looks like it was for draining water.",
 		False
 	),

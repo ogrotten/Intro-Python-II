@@ -16,13 +16,17 @@ class Human(Mob):
 	def where(self, rooms):
 		print (f"You are in the {self.location.name}\n{self.location.desc}")
 
-		stuff = (", ".join(self.location.items))
+		if len(self.location.items) == 2:
+			stuff = (" ".join(self.location.items))
+		else:
+			stuff = (", ".join(self.location.items))
 		
-		print(self.location.items)
-			# # stuff.join(x)
-
 		if len(stuff) > 0:
-			print (f"\nHere you see {stuff}")
+			if len(stuff) > 1:
+				addand = stuff.split()
+				addand.insert(-1, "and")
+				stuff = (" ".join(addand))
+			print (f"\nHere you see {stuff}.")
 		# if len(room[self.location.items]) > 0
 		# 	print (f"You are in the {self.location.name}\n{self.location.desc}")
 		
