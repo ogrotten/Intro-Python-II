@@ -9,7 +9,7 @@ class Mob:
 		return (f"{kind} is dead.")
 
 class Human(Mob):
-	def __init__(self, name="Miles", location = rooms["outside"], kind, inv):
+	def __init__(self, name, location, kind, inv):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
 
@@ -17,26 +17,43 @@ class Human(Mob):
 		# print (self.location.desc)
 		return
 
-	def action(self, cmd, player, rooms=None):
+	def action(self, cmd, player, rooms):
 		currentloc = player.location
 		newloc = None
 		directions = player.location.exits.keys()
 
-		if cmd in directions:
+		args = cmd.split()
+		if len(args) > 2:
+			info = f"\n {len(args)} commands. Two words only."
+			return info
+		else:
+			verb = args[0]
+			try: 
+				noun = args[1]
+			except:
+				pass
+
+		if verb in directions:
 			info = f"\nYou came from the {player.location.name} to the south."
-			newloc = rooms[currentloc.exits[cmd]]
+			newloc = rooms[currentloc.exits[verb]]
 			player.location = newloc
 
-		elif cmd in ("h", "help"):
+		elif verb in ("g", "get"):
+			
+			info = f"\nYou said '{verb} {noun}'. Ok"
+			
+
+		elif verb in ("h", "help"):
 			info = "\nCommands:\nn)orth, e)ast, w)est, s)outh, h)elp, q)uit."
 
-		elif cmd in ("q", "quit"):
+		elif verb in ("q", "quit"):
 			print("\nPeace.\n")
 			exit()
-		
+
 		else:
 			info = "\nSorry. Can't help you."
 
+		# print("action", player.location.name)
 		return info
 
 # class Critter(Mob):

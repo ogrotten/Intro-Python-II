@@ -15,6 +15,7 @@ count = 0
 def pause(x):
 	time.sleep(x)
 def where(player):
+	# print(player.location)
 	print (f"You are in the {player.location.name}\n{player.location.desc}") 
 def cli(player):
 	global info

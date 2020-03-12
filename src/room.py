@@ -15,7 +15,7 @@ rooms = {
 		"Outside Cave Entrance",
 		"North of you, the cave mount beckons",
 		{"n":"foyer"},
-		[]
+		["rope"]
 	),
 	"foyer": Location(
 		"Foyer",
