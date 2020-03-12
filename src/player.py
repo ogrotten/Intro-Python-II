@@ -9,7 +9,7 @@ class Mob:
 		return (f"{kind} is dead.")
 
 class Human(Mob):
-	def __init__(self, name, location, kind, inv):
+	def __init__(self, name="Miles", location = rooms["outside"], kind, inv):
 		super().__init__(kind, location)
 		self.name, self.inv  = name, inv
 
@@ -37,7 +37,6 @@ class Human(Mob):
 		else:
 			info = "\nSorry. Can't help you."
 
-		print("action", player.location.name)
 		return info
 
 # class Critter(Mob):
