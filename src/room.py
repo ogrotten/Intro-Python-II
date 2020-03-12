@@ -13,7 +13,7 @@ class Location:
 rooms = {
 	"outside": Location(
 		"Outside Cave Entrance",
-		"North of player, the cave mount beckons",
+		"North of you, the cave mount beckons",
 		{"n":"foyer"},
 		[]
 	),
@@ -25,7 +25,7 @@ rooms = {
 	),
 	"overlook": Location(
 		"Grand Overlook",
-		"A steep cliff appears before player, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.",
+		"A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.",
 		{"s":"foyer" },
 		[]
 	),
@@ -37,7 +37,7 @@ rooms = {
 	),
 	"alcove": Location(
 		"Treasure Chamber",
-		"player've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.",
+		"You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.",
 		{"s":"narrow"},
 		[]
 	),
