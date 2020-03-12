@@ -33,7 +33,7 @@ class Human(Mob):
 		elif cmd in ("q", "quit"):
 			print("\nPeace.\n")
 			exit()
-
+		
 		else:
 			info = "\nSorry. Can't help you."
 
