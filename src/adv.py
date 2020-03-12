@@ -21,18 +21,8 @@ def cli(player):
 	global isPlaying
 	cmd = input("\n> ").lower()
 
-	if cmd in ("n", "e", "w", "s"):
-		go(cmd, player)
+	info = player.action(cmd, player, rooms)
 
-	elif cmd in ("h", "help"):
-		info = "\nCommands:\nn)orth, e)ast, w)est, s)outh, h)elp, q)uit."
-
-	elif cmd in ("q", "quit"):
-		print("\nPeace.\n")
-		exit()
-
-	else:
-		info = "\nSorry. Can't help you."
 def go(dir, player):
 	global info
 	
@@ -69,7 +59,7 @@ def go(dir, player):
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Human("The Player", room["outside"], "player", "nothing")
+player = Human("The Player", rooms["outside"], "player", "nothing")
 
 
 # Write a loop that: 
