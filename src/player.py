@@ -1,7 +1,3 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
-
-
 class Mob:
 	def __init__(self, kind, location):
 		(self.kind, self.location) = (kind, location)
@@ -56,9 +52,6 @@ class Human(Mob):
 			player.location = newloc
 
 		elif verb in ("g", "get"):
-			# if currentloc.items[0] == "":
-			# 	currentloc.items.pop(0)
-
 			if noun in currentloc.items:
 				currentloc.items.remove(noun)
 				self.inv.append(noun)
@@ -93,13 +86,11 @@ class Human(Mob):
 		else:
 			info = "\nSorry. Can't help you."
 
-		# print("action", player.location.name)
 		return info
 
 	def sentence(self, incoming):
 		if len(incoming) > 0:
 			if len(incoming) > 1:
-				# addand = stuff.split()
 				if len(incoming) == 2:
 					incoming.insert(-1, "and")
 					stuff = " ".join(incoming)

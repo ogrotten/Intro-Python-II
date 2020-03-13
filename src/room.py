@@ -1,7 +1,3 @@
-# Implement a class to hold room information. This should have name and
-# description attributes.
-
-
 class Location:
 	def __init__(self, name, desc, exits, items):
 		self.name = name
@@ -43,13 +39,3 @@ rooms = {
 	),
 }
 
-# Link rooms together
-
-# room["outside"].n = room["foyer"]
-# room["foyer"].s = room["outside"]
-# room["foyer"].n = room["overlook"]
-# room["foyer"].e = room["narrow"]
-# room["overlook"].s = room["foyer"]
-# room["narrow"].w = room["foyer"]
-# room["narrow"].n = room["alcove"]
-# room["alcove"].s = room["narrow"]
