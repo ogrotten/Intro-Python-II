@@ -41,7 +41,7 @@ things = {
 	),
 	"shoes": Thing(
 		"shoes",
-		"a pair of shoes",
+		"a pair of [shoes]",
 		"Kinda worn but serviceable.",
 		False
 	),
