@@ -21,7 +21,7 @@ rooms = {
 		"Foyer",
 		"Dim light filters in from the south. Dusty passages run north and east.",
 		{"n":"overlook", "e":"narrow", "s":"outside", },
-		["candle", "sock", "apple"]
+		["candle", "sock", "acorn"]
 	),
 	"overlook": Location(
 		"Grand Overlook",

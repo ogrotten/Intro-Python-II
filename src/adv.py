@@ -4,6 +4,7 @@ import time
 
 # my libs
 from room import *
+from item import *
 from player import Human
 
 global info
@@ -22,7 +23,7 @@ def cli(player):
 	global isPlaying
 	cmd = input("\n> ").lower()
 
-	info = player.action(cmd, player, rooms)
+	info = player.action(cmd, player, rooms, things)
 
 
 player = Human("The Player", rooms["outside"], "player", "nothing")
@@ -31,7 +32,7 @@ player = Human("The Player", rooms["outside"], "player", "nothing")
 while isPlaying:
 	os.system("cls")
 
-	player.where(rooms)
+	player.where(rooms, things)
 
 	if info != None:
 		print(info)
