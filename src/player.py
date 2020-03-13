@@ -46,6 +46,9 @@ class Human(Mob):
 		if len(args) > 2:
 			info = f"\n {len(args)} commands. Two words only."
 			return info
+		elif len(args) == 0:
+			return
+
 		else:
 			verb = args[0]
 			try: 
@@ -59,7 +62,9 @@ class Human(Mob):
 			player.location = newloc
 
 		elif verb in ("g", "get"):
-			# print(noun)
+			if currentloc.items[0] == "":
+				currentloc.items.pop(0)
+
 			if noun in currentloc.items:
 				currentloc.items.remove(noun)
 				print(currentloc.items)
@@ -71,7 +76,12 @@ class Human(Mob):
 			
 
 		elif verb in ("h", "help"):
-			info = "\nCommands:\nn)orth, e)ast, w)est, s)outh, h)elp, q)uit."
+			info = "\nCommands:\nn)orth, e)ast, w)est, s)outh"
+			info += "\ng)et [item], h)elp, i)nventory, q)uit."
+
+		elif verb in ("i", "inv"):
+			# inventory = 
+			info = player.inv
 
 		elif verb in ("q", "quit"):
 			print("\nPeace.\n")
@@ -82,5 +92,8 @@ class Human(Mob):
 
 		# print("action", player.location.name)
 		return info
+	
+	# def sentence(arr):
+		
 
 # class Critter(Mob):

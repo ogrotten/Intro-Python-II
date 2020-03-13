@@ -26,7 +26,7 @@ def cli(player):
 	info = player.action(cmd, player, rooms, things)
 
 
-player = Human("The Player", rooms["outside"], "player", "nothing")
+player = Human("The Player", rooms["outside"], "player", "")
 
 # Write a loop that: 
 while isPlaying:
