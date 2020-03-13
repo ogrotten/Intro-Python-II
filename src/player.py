@@ -68,7 +68,7 @@ class Human(Mob):
 		
 		elif verb in ("d", "drop"):
 			if noun in self.inv:
-				self.inv.pop(noun)
+				self.inv.remove(noun)
 				currentloc.items.append(noun)
 				info += f"\nYou dropped {things[noun].name}."
 			else:
